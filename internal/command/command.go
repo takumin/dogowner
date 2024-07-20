@@ -9,7 +9,7 @@ import (
 	"github.com/urfave/cli/v2"
 
 	"github.com/takumin/dogowner/internal/command/completion"
-	"github.com/takumin/dogowner/internal/command/subcommand"
+	"github.com/takumin/dogowner/internal/command/reviewdog"
 	"github.com/takumin/dogowner/internal/config"
 	"github.com/takumin/dogowner/internal/metadata"
 	"github.com/takumin/dogowner/internal/version"
@@ -21,7 +21,11 @@ const (
 )
 
 func Main(stdout io.Writer, stderr io.Writer, stdin io.Reader, args []string) int {
-	cfg := config.NewConfig()
+	cfg := config.NewConfig(
+		config.LogLevel("info"),
+		config.LogFormat("json"),
+		config.ConfigPath(".reviewdog.yml"),
+	)
 
 	flags := []cli.Flag{
 		&cli.StringFlag{
@@ -44,7 +48,7 @@ func Main(stdout io.Writer, stderr io.Writer, stdin io.Reader, args []string) in
 
 	cmds := []*cli.Command{
 		completion.NewCommands(cfg, flags),
-		subcommand.NewCommands(cfg, flags),
+		reviewdog.NewCommands(cfg, flags),
 	}
 
 	app := &cli.App{

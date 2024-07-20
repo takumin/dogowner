@@ -16,8 +16,8 @@ func (o LogFormat) Apply(c *Config) {
 	c.LogFormat = string(o)
 }
 
-type Variable string
+type ConfigPath string
 
-func (o Variable) Apply(c *Config) {
-	c.Variable = string(o)
+func (o ConfigPath) Apply(c *Config) {
+	c.ConfigPath = string(o)
 }
