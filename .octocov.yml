@@ -1,0 +1,19 @@
+---
+summary:
+  if: true
+comment:
+  if: is_pull_request
+diff:
+  datastores:
+  - artifact://${GITHUB_REPOSITORY}
+report:
+  datastores:
+  - artifact://${GITHUB_REPOSITORY}
+codeToTestRatio:
+  code:
+  - '**/*.go'
+  - '!**/*_test.go'
+  test:
+  - '**/*_test.go'
+testExecutionTime:
+  acceptable: 3min

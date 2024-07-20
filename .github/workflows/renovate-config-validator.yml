@@ -1,0 +1,37 @@
+---
+name: Renovate Config Validator
+on:
+  workflow_call:
+    inputs:
+      jobname:
+        type: string
+        required: false
+        description: 'A jobname passed from the caller workflow'
+        default: 'renovate-config-validator'
+  pull_request:
+    paths:
+    - '.github/actions/setup-aqua/action.yaml'
+    - '.github/actions/setup-bun/action.yaml'
+    - '.github/workflows/renovate-config-validator.yml'
+    - '.renovaterc.json'
+    - 'bun.lockb'
+    - 'package.json'
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || inputs.jobname }}
+  cancel-in-progress: true
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+    - name: Checkout
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+    - name: Setup Aqua
+      uses: ./.github/actions/setup-aqua
+    - name: Setup Bun
+      uses: ./.github/actions/setup-bun
+    - name: Renovate Config Validator
+      run: bun run renovate-config-validator --strict
