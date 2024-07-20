@@ -1,4 +1,4 @@
-package subcommand
+package reviewdog
 
 import (
 	"github.com/urfave/cli/v2"
@@ -9,18 +9,18 @@ import (
 func NewCommands(cfg *config.Config, flags []cli.Flag) *cli.Command {
 	flags = append(flags, []cli.Flag{
 		&cli.StringFlag{
-			Name:        "variable",
-			Aliases:     []string{"v"},
-			Usage:       "variable",
-			EnvVars:     []string{"VARIABLE"},
-			Value:       cfg.Variable,
-			Destination: &cfg.Variable,
+			Name:        "config-path",
+			Aliases:     []string{"c"},
+			Usage:       "reviewdog config path",
+			EnvVars:     []string{"CONFIG_PATH"},
+			Value:       cfg.ConfigPath,
+			Destination: &cfg.ConfigPath,
 		},
 	}...)
 	return &cli.Command{
-		Name:    "subcommand",
-		Aliases: []string{"sub"},
-		Usage:   "subcommand",
+		Name:    "reviewdog",
+		Aliases: []string{"r", "rd"},
+		Usage:   "reviewdog",
 		Flags:   flags,
 		Action:  action(cfg),
 	}
