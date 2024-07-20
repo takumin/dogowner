@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/takumin/boilerplate-golang-cli/internal/command"
+	"github.com/takumin/dogowner/internal/command"
 )
 
 func main() {

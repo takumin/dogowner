@@ -5,8 +5,8 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/takumin/boilerplate-golang-cli/internal/command/completion"
-	"github.com/takumin/boilerplate-golang-cli/internal/config"
+	"github.com/takumin/dogowner/internal/command/completion"
+	"github.com/takumin/dogowner/internal/config"
 )
 
 func TestNewCommands(t *testing.T) {

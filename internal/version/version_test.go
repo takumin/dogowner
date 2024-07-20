@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/takumin/boilerplate-golang-cli/internal/version"
+	"github.com/takumin/dogowner/internal/version"
 )
 
 func TestVersion(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/takumin/boilerplate-golang-cli/internal/command"
+	"github.com/takumin/dogowner/internal/command"
 )
 
 func TestRun(t *testing.T) {

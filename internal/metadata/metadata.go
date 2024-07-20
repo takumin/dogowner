@@ -1,9 +1,9 @@
 package metadata
 
 var (
-	appName    string = "boilerplate-golang-cli"      // ###BOILERPLATE_APP_NAME###
-	appDesc    string = "Boilerplate Golang CLI Tool" // ###BOILERPLATE_APP_DESC###
-	authorName string = "Takumi Takahashi"            // ###BOILERPLATE_AUTHOR_NAME###
+	appName    string = "dogowner"
+	appDesc    string = "CLI wrapper tool with presets for commonly used Reviewdog settings"
+	authorName string = "Takumi Takahashi"
 )
 
 func AppName() string {
