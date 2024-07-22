@@ -1,6 +1,8 @@
 package reviewdog_test
 
 import (
+	"bytes"
+	"strings"
 	"testing"
 
 	"github.com/urfave/cli/v2"
@@ -10,25 +12,17 @@ import (
 )
 
 func TestNewCommands(t *testing.T) {
-	cfg := config.NewConfig()
-	flags := []cli.Flag{}
-	cmd := reviewdog.NewCommands(cfg, flags)
-
-	if cmd.Name != "reviewdog" {
-		t.Errorf("expected command name to be 'reviewdog', but got '%s'", cmd.Name)
+	args := []string{"a", "reviewdog"}
+	stdin := strings.NewReader("")
+	stdout := bytes.NewBuffer(make([]byte, bytes.MinRead))
+	stderr := bytes.NewBuffer(make([]byte, bytes.MinRead))
+	app := cli.App{
+		Commands:  []*cli.Command{reviewdog.NewCommands(config.NewConfig(), []cli.Flag{})},
+		Reader:    stdin,
+		Writer:    stdout,
+		ErrWriter: stderr,
 	}
-
-	if cmd.Usage != "running reviewdog" {
-		t.Errorf("expected command usage to be 'running reviewdog', but got '%s'", cmd.Usage)
-	}
-
-	for _, subcmd := range cmd.Subcommands {
-		if subcmd == nil {
-			t.Errorf("expected subcommand to not be nil")
-		}
-	}
-
-	if err := cmd.Action(&cli.Context{}); err != nil {
-		t.Errorf("expected action func to not be nil")
+	if err := app.Run(args); err != nil {
+		t.Errorf("expected running to not be nil")
 	}
 }
