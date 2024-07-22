@@ -20,7 +20,7 @@ func NewCommands(cfg *config.Config, flags []cli.Flag) *cli.Command {
 	return &cli.Command{
 		Name:    "reviewdog",
 		Aliases: []string{"r", "rd"},
-		Usage:   "reviewdog",
+		Usage:   "running reviewdog",
 		Flags:   flags,
 		Action:  action(cfg),
 	}
