@@ -19,7 +19,7 @@ func TestNewCommands(t *testing.T) {
 	}
 
 	if cmd.Usage != "running reviewdog" {
-		t.Errorf("expected command usage to be 'command reviewdog', but got '%s'", cmd.Usage)
+		t.Errorf("expected command usage to be 'running reviewdog', but got '%s'", cmd.Usage)
 	}
 
 	for _, subcmd := range cmd.Subcommands {
