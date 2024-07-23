@@ -14,9 +14,9 @@ func NewCommands(cfg *config.Config, flags []cli.Flag) *cli.Command {
 			Name:        "config-path",
 			Aliases:     []string{"c"},
 			Usage:       "reviewdog config path",
-			EnvVars:     []string{"CONFIG_PATH"},
-			Value:       cfg.ConfigPath,
-			Destination: &cfg.ConfigPath,
+			EnvVars:     []string{"REVIEWDOG_CONFIG_PATH"},
+			Value:       cfg.Reviewdog.ConfigPath,
+			Destination: &cfg.Reviewdog.ConfigPath,
 		},
 	}...)
 	return &cli.Command{
@@ -31,7 +31,7 @@ func NewCommands(cfg *config.Config, flags []cli.Flag) *cli.Command {
 func action(cfg *config.Config) func(ctx *cli.Context) error {
 	return func(ctx *cli.Context) error {
 		slog.DebugContext(ctx.Context, "reviewdog",
-			slog.String("config-path", cfg.ConfigPath),
+			slog.String("config-path", cfg.Reviewdog.ConfigPath),
 			slog.Any("args", ctx.Args().Slice()),
 		)
 		return nil

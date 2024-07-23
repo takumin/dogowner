@@ -16,8 +16,8 @@ func (o LogFormat) Apply(c *Config) {
 	c.LogFormat = string(o)
 }
 
-type ConfigPath string
+type ReviewdogConfigPath string
 
-func (o ConfigPath) Apply(c *Config) {
-	c.ConfigPath = string(o)
+func (o ReviewdogConfigPath) Apply(c *Config) {
+	c.Reviewdog.ConfigPath = string(o)
 }
