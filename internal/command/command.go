@@ -24,7 +24,7 @@ func Main(stdout io.Writer, stderr io.Writer, stdin io.Reader, args []string) in
 	cfg := config.NewConfig(
 		config.LogLevel("info"),
 		config.LogFormat("json"),
-		config.ConfigPath(".reviewdog.yml"),
+		config.ReviewdogConfigPath(".reviewdog.yml"),
 	)
 
 	flags := []cli.Flag{

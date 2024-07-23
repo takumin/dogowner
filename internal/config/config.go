@@ -1,8 +1,12 @@
 package config
 
 type Config struct {
-	LogLevel   string
-	LogFormat  string
+	LogLevel  string
+	LogFormat string
+	Reviewdog Reviewdog
+}
+
+type Reviewdog struct {
 	ConfigPath string
 }
 

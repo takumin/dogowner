@@ -26,9 +26,9 @@ func TestLogFormat(t *testing.T) {
 }
 
 func TestConfigPath(t *testing.T) {
-	want := &config.Config{ConfigPath: "TEST"}
+	want := &config.Config{Reviewdog: config.Reviewdog{ConfigPath: "TEST"}}
 	got := &config.Config{}
-	config.ConfigPath("TEST").Apply(got)
+	config.ReviewdogConfigPath("TEST").Apply(got)
 	if !reflect.DeepEqual(want, got) {
 		t.Error("expected config struct to be equal, but got not equal")
 	}
