@@ -1,7 +1,9 @@
 package reviewdog
 
 import (
+	"fmt"
 	"log/slog"
+	"os"
 
 	"github.com/urfave/cli/v2"
 
@@ -17,6 +19,14 @@ func NewCommands(cfg *config.Config, flags []cli.Flag) *cli.Command {
 			EnvVars:     []string{"REVIEWDOG_CONFIG_PATH"},
 			Value:       cfg.Reviewdog.ConfigPath,
 			Destination: &cfg.Reviewdog.ConfigPath,
+			Action: func(ctx *cli.Context, s string) error {
+				_, err := os.Stat(s)
+				if os.IsNotExist(err) {
+					return fmt.Errorf("not found reviewdog config file: %s", s)
+				}
+				cfg.Reviewdog.ConfigPath = s
+				return nil
+			},
 		},
 	}...)
 	return &cli.Command{
