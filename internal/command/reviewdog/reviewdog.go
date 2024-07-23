@@ -1,6 +1,8 @@
 package reviewdog
 
 import (
+	"log/slog"
+
 	"github.com/urfave/cli/v2"
 
 	"github.com/takumin/dogowner/internal/config"
@@ -28,6 +30,10 @@ func NewCommands(cfg *config.Config, flags []cli.Flag) *cli.Command {
 
 func action(cfg *config.Config) func(ctx *cli.Context) error {
 	return func(ctx *cli.Context) error {
+		slog.DebugContext(ctx.Context, "reviewdog",
+			slog.String("config-path", cfg.ConfigPath),
+			slog.Any("args", ctx.Args().Slice()),
+		)
 		return nil
 	}
 }
