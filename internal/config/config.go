@@ -3,7 +3,7 @@ package config
 type Config struct {
 	LogLevel  string
 	LogFormat string
-	Reviewdog Reviewdog
+	Reviewdog *Reviewdog
 }
 
 type Reviewdog struct {
@@ -11,7 +11,9 @@ type Reviewdog struct {
 }
 
 func NewConfig(opts ...Option) *Config {
-	c := &Config{}
+	c := &Config{
+		Reviewdog: &Reviewdog{},
+	}
 	for _, o := range opts {
 		o.Apply(c)
 	}
