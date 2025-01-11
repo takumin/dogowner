@@ -19,6 +19,6 @@ packages:
 - name: editorconfig-checker/editorconfig-checker@v3.1.2
 - name: oven-sh/bun@bun-v1.1.43
 - name: k1LoW/octocov@v0.62.4
-- name: google/yamlfmt@v0.14.0
+- name: google/yamlfmt@v0.15.0
 - name: suzuki-shunsuke/ghalint@v1.2.1
 - name: suzuki-shunsuke/pinact@v1.1.2
